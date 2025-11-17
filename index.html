@@ -1,1 +1,77 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quote Fetcher</title>
+<style>
+body {
+margin: 0;
+font-family: system-ui, sans-serif;
+background: #f5f5f5;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+text-align: center;
+}
+
+
+.container {
+width: 75vw;
+max-width: 800px;
+padding: 20px;
+border-radius: 16px;
+background: white;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+#quote {
+font-size: 1.5rem;
+margin-bottom: 20px;
+min-height: 3rem;
+}
+
+
+button {
+padding: 12px 24px;
+font-size: 1rem;
+border: none;
+border-radius: 12px;
+cursor: pointer;
+background: #0078ff;
+color: white;
+transition: background 0.2s ease;
+}
+
+
+button:hover {
+background: #005fcc;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="quote">Click the button to get a quote.</div>
+<button id="fetchBtn">Get Quote</button>
+</div>
+
+
+<script>
+const btn = document.getElementById('fetchBtn');
+const quoteBox = document.getElementById('quote');
+
+
+btn.addEventListener('click', async () => {
+try {
+const res = await fetch('https://quote.cs260.click');
+const text = await res.text();
+quoteBox.textContent = text;
+} catch (e) {
+quoteBox.textContent = 'Failed to fetch quote.';
+}
+});
+</script>
+</body>
+</html>
